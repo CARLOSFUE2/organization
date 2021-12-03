@@ -1,0 +1,11 @@
+html {
+    scroll-behavior: smooth !important;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+legend{
+    width: fit-content !important;
+}
