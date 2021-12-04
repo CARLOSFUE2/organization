@@ -86,9 +86,11 @@ export default {
         }
         .title{
             margin-top: 7rem;
+            color: #42b983;
         }
         .content{
             padding: 0;
+            color: #42b983;
         }
         .gallery{
             flex-direction: column;

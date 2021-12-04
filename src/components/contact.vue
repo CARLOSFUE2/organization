@@ -8,19 +8,54 @@
             <h2 class="title-from">We have a team attentive to your request!</h2>
             <form class="form-contact" action="">
                 <label >Name</label>
-                <input class="form-control-input" type="text">
+                <input class="form-control-input" v-model="name" type="text">
                 <label >Email</label>
-                <input class="form-control-input" type="email">
+                <input class="form-control-input"  v-model="email" type="email">
                 <label >Message</label>
-                <textarea class="form-control-textarea" rows="6"></textarea>
-                <button class="button-organization" type="submit">Send</button>
+                <textarea class="form-control-textarea" v-model="messsage" rows="6"></textarea>
+                <button class="button-organization" v-on:click="clearForm()" type="submit">Send</button>
             </form>
+        </div>
+        <div class="box-modal" v-if="showModal">
+            <Modal @closeModal="closeModal"/>
         </div>
     </div>
 </template>
 <script>
+import Modal from '../components/modal.vue'
+
 export default {
-    name:'Contact'
+    name:'Contact',
+    components:{
+        Modal
+    },
+    data(){
+        return{
+            name: '',
+            email: '',
+            messsage:'',
+            showModal : false,
+        }
+    }, 
+    methods:{
+        clearForm(){
+            event.preventDefault();
+            if(this.name != '' && this.email !='' && this.messsage !=''){
+                this.name = '',
+                this.email ='',
+                this.messsage ='';
+                this.showModalForm();
+            }else{
+                alert('load the form with all its fields')
+            }
+        },
+        showModalForm(){
+            this.showModal = !this.showModal;
+        },
+        closeModal(){
+            this.showModal = false;
+        }
+    }
 }
 </script>
 <style scoped>
@@ -71,6 +106,12 @@ export default {
         align-items: center;
         justify-content: center;
 
+    }
+    .box-modal{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        width: 100vw;
     }
     .title-from{
         font-size: 2.2rem;
